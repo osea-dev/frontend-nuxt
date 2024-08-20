@@ -16,7 +16,7 @@
     "lint:style": "turbo run lint:style",
     "test": "turbo run test",
     "test:e2e": "turbo run test:e2e",
-		"format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "engines": {
     "node": ">=18.20.4"
@@ -46,5 +46,6 @@
     "vitest": "^2.0.5",
     "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^2.0.29"
-  }
+  },
+  "packageManager": "pnpm@9.7.1"
 }
