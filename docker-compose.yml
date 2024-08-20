@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./apps/frontend:/app/apps/frontend
+      # - ./apps/backend:/app/apps/backend
+      - /app/apps/frontend/node_modules
+      # - /app/apps/backend/node_modules
+    ports:
+      - "3000:3000"  # Nuxt.js (Frontend)
+      # - "4000:4000"  # Node.js (Backend)
+    environment:
+      - NODE_ENV=development
