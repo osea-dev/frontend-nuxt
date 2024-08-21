@@ -1,18 +1,48 @@
 version: 2.1
 
+orbs:
+    docker: cimg/node:18
+
+parameters:
+    frontend-modified:
+      type: boolean
+      default: false
+
 jobs:
+    # build frontend
+    build_frontend:
+      docker:
+        - image: cimg/node:18
+      steps:
+        - checkout
+        - run:
+            name: Build frontend
+            command: |
+              cd apps/frontend/.*
+              pnpm install
+
     # sample checkout frontend
-    checkout_frontend:
-        docker:
-            - image: cimg/node:18
-        # working_directory: ~/
-        steps:
-            - checkout
-            - run:
-                name: Print frontend directory contents
-                command: ls -la
+    # checkout_frontend:
+    #     docker:
+    #         - image: cimg/node:18
+    #     # working_directory: ~/
+    #     steps:
+    #         - checkout
+    #         - run:
+    #             name: Print frontend directory contents
+    #             command: ls -la
 
 workflows:
-    test_checkout:
+    build_frontend_test:
+      when: << pipeline.parameters.frontend-modified >>
       jobs:
-        - checkout_frontend
+        - build_pipeline_frontend:
+            filters:
+              branches:
+                only: main
+
+
+    # test_checkout:
+    #   jobs:
+    #     - checkout_frontend
+    

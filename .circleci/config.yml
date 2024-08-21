@@ -8,6 +8,6 @@ workflows:
           - path-filtering/filter:
               name: check_frontend_changes
               base-revision: main
-              config-path: .circleci/continue_config.yml
               mapping: |
                 apps/frontend/.* frontend-modified true
+              config-path: .circleci/continue_config.yml
