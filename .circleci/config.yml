@@ -1,0 +1,12 @@
+version: 2.1
+setup: true
+orbs:
+    path-filtering: circleci/path-filtering@1.1.0
+workflows:
+    setup:
+        jobs:
+          - path-filtering:
+              name: check_frontend_changes
+              base-revision: main
+              mapping: |
+                apps/frontend/.* frontend-modified true
