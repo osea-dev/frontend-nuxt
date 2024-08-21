@@ -5,7 +5,7 @@ orbs:
 workflows:
     setup:
         jobs:
-          - path-filtering:
+          - path-filtering/filter:
               name: check_frontend_changes
               base-revision: main
               mapping: |
