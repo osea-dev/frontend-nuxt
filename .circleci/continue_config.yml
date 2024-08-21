@@ -18,7 +18,7 @@ jobs:
         - run:
             name: Build frontend
             command: |
-              cd apps/frontend/.*
+              cd apps/frontend
               pnpm install
 
     # sample checkout frontend
