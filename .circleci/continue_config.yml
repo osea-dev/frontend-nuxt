@@ -33,10 +33,10 @@ jobs:
     #             command: ls -la
 
 workflows:
-    build_frontend:
+    build_frontend_pipeline:
       when: << pipeline.parameters.frontend-modified >>
       jobs:
-        - build_pipeline_frontend:
+        - build_frontend:
             filters:
               branches:
                 only: main
