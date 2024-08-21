@@ -12,7 +12,7 @@ jobs:
     # build frontend
     build_frontend:
       docker:
-        - image: cimg/node:18
+        - image: cimg/node:18.20.4
       steps:
         - checkout
         - run:
