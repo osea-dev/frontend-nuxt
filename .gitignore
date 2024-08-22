@@ -16,7 +16,7 @@ out/
 build
 
 # docker
-docker/mysql/dbdata/*
+docker/
 
 # misc
 .DS_Store
