@@ -2,7 +2,6 @@
 
 # dependencies
 node_modules
-.npmrc
 .pnp
 .pnp.js
 .pnpm-store
