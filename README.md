@@ -3,8 +3,9 @@
 ```
 apps/
  ├── backend/
- |      ├── nodejs/
- |      └── laravel/
+ |      └── node/
+ |            └── src/
+ |            ...
  └── frontend/
         ├── public/
         └── server/
