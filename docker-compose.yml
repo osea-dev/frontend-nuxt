@@ -1,15 +1,56 @@
+networks:
+  docker.networks:
+    driver: bridge
+
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
+    container_name: docker.app
     volumes:
       - ./apps/frontend:/app/apps/frontend
-      # - ./apps/backend:/app/apps/backend
       - /app/apps/frontend/node_modules
+      # - ./apps/backend:/app/apps/backend
       # - /app/apps/backend/node_modules
     ports:
       - "3000:3000"  # Nuxt.js (Frontend)
       # - "4000:4000"  # Node.js (Backend)
     environment:
       - NODE_ENV=development
+    networks:
+      - docker.networks
+
+  mysql:
+    image: mysql:8
+    container_name: docker.mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./docker/mysql/mysql.cnf:/etc/mysql/conf.d/custom.cnf:ro"
+      - "./docker/mysql/dbdata:/var/lib/mysql"
+    environment:
+        MYSQL_DATABASE: ${MYSQL_DATABASE:-development}
+        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        MYSQL_ROOT_PASSWORD: ""  # No root password
+        MYSQL_USER: ${MYSQL_USER:-mysql}
+        MYSQL_PASSWORD: ""  # No password for the non-root user
+    networks:
+      - docker.networks
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: docker.phpmyadmin
+    depends_on: 
+      - mysql
+    ports:
+      - "8080:80"
+    environment:
+        PWA_HOST: mysql
+        PWA_ARBITRARY: 1
+        PWA_PORT: 3306
+        MYSQL_ROOT_PASSWORD: ""
+    networks:
+      - docker.networks
+
+  # nginx:
+  #   build: ./docker/nginx
+  #   container_name: docker.nginx
