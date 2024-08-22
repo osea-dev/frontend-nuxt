@@ -15,6 +15,9 @@ coverage
 out/
 build
 
+# docker
+docker/mysql/dbdata/*
+
 # misc
 .DS_Store
 *.pem
