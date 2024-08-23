@@ -22,8 +22,6 @@ WORKDIR /app
 
 # ports
 EXPOSE 3000   
-# EXPOSE 4000   # Node.js (Backend)
 
 # Start both the frontend and backend in development mode
 CMD ["sh", "-c", "pnpm --filter ./apps/frontend dev"]
-# CMD ["sh", "-c", "pnpm --filter apps/frontend dev & pnpm --filter apps/backend dev"]
