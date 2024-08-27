@@ -2,10 +2,6 @@
 
 ```
 apps/
- ├── backend/
- |      └── node/
- |            └── src/
- |            ...
  └── frontend/
         ├── public/
         └── server/
@@ -27,4 +23,12 @@ package.json
 pnpm-lock.yaml
 pnpm-workspace.yaml
 turbo.json
+ ```
+
+ ## Run the app
+
+ 
+
+ ```
+ docker-compose up --build
  ```
