@@ -26,9 +26,6 @@ turbo.json
  ```
 
  ## Run the app
-
- 
-
  ```
  docker-compose up --build
  ```
