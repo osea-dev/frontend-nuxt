@@ -29,5 +29,9 @@ export default defineNuxtConfig({
 		defaultLocale: DEFAULT_LOCALE,
 		locales: LOCALES,
 		langDir: 'locales/',
-	}
+	},
+  typescript: {
+		typeCheck: true,
+		strict: true,
+	},
 })
