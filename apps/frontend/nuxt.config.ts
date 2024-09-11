@@ -22,9 +22,12 @@ export default defineNuxtConfig({
       }
     ]
   ],
+
+	debug: false,
+	ignore: ['**/*.test.*', '**/*.spec.*'],
   i18n: {
 		defaultLocale: DEFAULT_LOCALE,
 		locales: LOCALES,
 		langDir: 'locales/',
-	},
+	}
 })
