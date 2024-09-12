@@ -1,0 +1,12 @@
+{
+	"extends": "@vue/tsconfig/tsconfig.json",
+	"include": [
+		"vite.config.*",
+		"vitest.config.*"
+	],
+	"compilerOptions": {
+		"noEmit": false,
+		"composite": true,
+		"types": ["node", "@nuxt/types", "@nuxtjs/i18n"]
+	}
+}
