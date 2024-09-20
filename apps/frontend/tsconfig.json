@@ -8,7 +8,11 @@
 		"**/*.d.ts",
 		"./.nuxt/nuxt.d.ts"
 	],
-	"exclude": ["node_modules"],
+	"exclude": [
+    	"node_modules",
+    	"vite.config.ts", // Add this line
+    	"vitest.config.ts" // Add this line
+  	],
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {
@@ -16,7 +20,8 @@
 		},
 		"allowJs": true,
 		"composite": false,
-		"types": ["node", "@nuxt/types", "@nuxtjs/i18n"]
+		"types": ["@nuxt/types", "@nuxtjs/i18n", "vitest"],
+		// "typeRoots": ["./@types", "./node_modules/@types"],
 	},
   "references": [
 		{

@@ -11,6 +11,11 @@ COPY apps/frontend/package*.json ./apps/frontend/
 # COPY apps/backend/package*.json ./apps/backend/
 COPY packages/eslint-config-custom/package*.json ./packages/eslint-config-custom/
 
+COPY packages/stylelint-config-custom/package.json ./packages/stylelint-config-custom/
+
+COPY packages/ui/package.json ./packages/ui/
+COPY package.json ./
+
 # install dependencies using pnpm
 RUN pnpm install
 
@@ -18,10 +23,10 @@ RUN pnpm install
 COPY apps/frontend ./apps/frontend
 # COPY apps/backend ./apps/backend
 
-WORKDIR /app
+WORKDIR /app/apps/frontend
 
 # ports
 EXPOSE 3000   
 
-# Start both the frontend and backend in development mode
-CMD ["sh", "-c", "pnpm --filter ./apps/frontend dev"]
+# Run the frontend in development mode using pnpm's filter optionmode
+CMD ["pnpm", "dev", "--filter", "./apps/frontend"]

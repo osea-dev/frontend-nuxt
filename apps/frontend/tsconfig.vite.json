@@ -7,6 +7,6 @@
 	"compilerOptions": {
 		"noEmit": false,
 		"composite": true,
-		"types": ["node", "@nuxt/types", "@nuxtjs/i18n"]
+		"types": ["node", "vitest", "@nuxt/types", "@nuxtjs/i18n"]
 	}
 }
