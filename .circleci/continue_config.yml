@@ -20,22 +20,85 @@ jobs:
             command: |
               cd apps/frontend
               pnpm install
+              pnpm build
 
-    # sample checkout frontend
-    # checkout_frontend:
-    #     docker:
-    #         - image: cimg/node:18
-    #     # working_directory: ~/
-    #     steps:
-    #         - checkout
-    #         - run:
-    #             name: Print frontend directory contents
-    #             command: ls -la
+    # test job
+    test:
+      docker:
+        - image: circleci/node:18
+      steps:
+        - checkout
+        # step1: install dependencies
+        - run: pnpm install
+
+        # step2: lint the code using eslint
+        - run: 
+            name: Lint the code
+            command: |
+              pnpm lint
+        # step3: check code format
+        - run:
+            name: Check code formatting
+            command: |
+              pnpm format
+
+    # build and push docker image
+    build_and_push_docker:
+      docker:
+        - image: docker:latest
+      steps:
+        - setup_remote_docker:
+            version: 20.10.7
+        - checkout
+        - run:
+            name: Build Docker Image
+            command: | 
+              docker build -t ${FRONTEND_IMAGE} .
+
+    # deploy staging
+    # deploy_staging:
+      # docker:
+        # - image: circleci/python:3.7
+      # steps:
+        # - checkout
+
+        # dynamically inject SSH keys from env
+        # - run:
+            # name: Setup Staging SSH Key
+            # command: |
+              # mkdir -p ~/.ssh
+              # echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+              # chmod 600 ~/.ssh
+              # ssh-keyscan $SSH_STAGING_HOST >> ~/.ssh/known_hosts
+        
+        # - run:
+            # name: Deploy to Staging Server Via SSH
+            # command: |
+              # ssh $SSH_USER@$SSH_PRODUCTION_HOST "cd $SSH_PATH && git pull && docker-compose pull && docker-compose up -d"
+    
+    # deploy_productions:
+      # docker:
+        # - image: circleci/python:3.7
+      # steps:
+        # - checkout  
+
+        # - run:
+            # name: Setup Production SSH Key
+            # command: |
+              # mkdir -p ~/.ssh
+              # echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+              # chmod 600 ~/.ssh
+              # ssh-keyscan $SSH_STAGING_HOST >> ~/.ssh/known_hosts
+        # - run:
+            # name: Deploy to Staging Server Via SSH
+            # command: |
+              # ssh $SSH_USER@$SSH_PRODUCTION_HOST "cd $SSH_PATH && git pull && docker-compose pull && docker-compose up -d"
 
 workflows:
     build_frontend_pipeline:
       when: << pipeline.parameters.frontend-modified >>
       jobs:
+        - test
         - build_frontend:
             filters:
               branches:
