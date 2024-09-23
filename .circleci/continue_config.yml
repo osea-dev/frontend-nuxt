@@ -96,16 +96,22 @@ jobs:
 
 workflows:
     build_frontend_pipeline:
-      when: << pipeline.parameters.frontend-modified >>
       jobs:
         - test
+
         - build_frontend:
             filters:
               branches:
-                only: main
+                only: 
+                  - main
+                  - release
+            when: << pipeline.parameters.frontend-modified >>
 
-
-    # test_checkout:
-    #   jobs:
-    #     - checkout_frontend
-    
+        - build_and_push_docker:
+            requires:
+              - build_frontend
+            filters:
+              branches:
+                only:
+                  - main
+                  - release
