@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import { Block } from 'ui';
 import { ref, onMounted } from 'vue';
 import * as THREE from 'three';
 import anime from 'animejs';
