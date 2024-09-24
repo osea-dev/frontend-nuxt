@@ -8,12 +8,8 @@ COPY pnpm-lock.yaml ./
 
 # copy relevant packages
 COPY apps/frontend/package*.json ./apps/frontend/
-# COPY apps/backend/package*.json ./apps/backend/
-COPY packages/eslint-config-custom/package*.json ./packages/eslint-config-custom/
 
-COPY packages/stylelint-config-custom/package.json ./packages/stylelint-config-custom/
-
-COPY packages/ui/package.json ./packages/ui/
+COPY packages ./packages
 COPY package.json ./
 
 # install dependencies using pnpm

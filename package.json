@@ -37,7 +37,6 @@
     "@types/animejs": "^3.1.12",
     "@types/jest": "^29.5.13",
     "@types/mocha": "^10.0.8",
-    "@types/testing-library__jest-dom": "^6.0.0",
     "@types/three": "^0.168.0",
     "@typescript-eslint/eslint-plugin": "^8.2.0",
     "@typescript-eslint/parser": "^8.2.0",
@@ -57,6 +56,7 @@
     "turbo": "^2.0.14",
     "typescript": "^5.5.4",
     "unplugin-auto-import": "^0.18.2",
+    "unplugin-vue-components": "^0.27.4",
     "vitest": "^2.1.1",
     "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^2.1.6"
